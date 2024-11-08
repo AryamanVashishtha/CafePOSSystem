@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import myContext from '../../context/data/myContext'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../fireabase/FirebaseConfig';
@@ -71,9 +71,6 @@ function Login() {
                         className=' bg-yellow-500 w-full text-black font-bold  px-2 py-2 rounded-lg'>
                         Login
                     </button>
-                </div>
-                <div>
-                    <h2 className='text-white'>Don't have an account <Link className=' text-yellow-500 font-bold' to={'/signup'}>Signup</Link></h2>
                 </div>
             </div>
         </div>

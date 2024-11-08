@@ -1,25 +1,26 @@
-import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
 } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 import Home from './pages/home/Home';
 import Order from './pages/order/Order';
 import Cart from './pages/cart/Cart';
 import Dashboard from './pages/admin/dashboard/Dashboard';
+import Scan from './pages/admin/dashboard/Scan';
 import NoPage from './pages/nopage/NoPage';
 import MyState from './context/data/myState';
 import Login from './pages/registration/Login';
-import Signup from './pages/registration/Signup';
-import ProductInfo from './pages/productInfo/ProductInfo';
+import OrderInfo from './pages/orderInfo/OrderInfo';
 import AddProduct from './pages/admin/page/AddProduct';
 import UpdateProduct from './pages/admin/page/UpdateProduct';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Allproducts from './pages/allproducts/Allproducts';
+
 function App() {
   return (
     <MyState>
@@ -38,51 +39,64 @@ function App() {
               <Dashboard />
             </ProtectedRouteForAdmin>
           } />
-          <Route path='/login' element={<Login/>} />
-          <Route path='/signup' element={<Signup/>} />
-          <Route path='/productinfo/:id' element={<ProductInfo/>} />
+          <Route path="/dashboard/scan" element={
+            <ProtectedRouteForAdmin>
+              <Scan />
+            </ProtectedRouteForAdmin>
+          } />
+          <Route path='/login' element={<Login />} />
+          <Route path='/orderinfo/:id' element={
+            <ProtectedRouteForAdmin>
+              <OrderInfo />
+            </ProtectedRouteForAdmin>
+          } />
+          {/* Fixed trailing slash issue */}
+          <Route path='/dashboard/orderinfo' element={<Navigate to="/dashboard" />} />
           <Route path='/addproduct' element={
             <ProtectedRouteForAdmin>
-              <AddProduct/>
+              <AddProduct />
             </ProtectedRouteForAdmin>
           } />
           <Route path='/updateproduct' element={
             <ProtectedRouteForAdmin>
-              <UpdateProduct/>
+              <UpdateProduct />
             </ProtectedRouteForAdmin>
           } />
           <Route path="/*" element={<NoPage />} />
         </Routes>
-        <ToastContainer/>
+        <ToastContainer hideProgressBar={true} autoClose={800} position="top-center" />
       </Router>
     </MyState>
-
-  )
+  );
 }
 
-export default App 
+export default App;
 
-// user 
-
-export const ProtectedRoute = ({children}) => {
-  const user = localStorage.getItem('user')
-  if(user){
-    return children
-  }else{
-    return <Navigate to={'/login'}/>
+// ProtectedRoute Component
+export const ProtectedRoute = ({ children }) => {
+  const user = localStorage.getItem('user');
+  if (user) {
+    return children;
+  } else {
+    return <Navigate to='/login' />;
   }
-}
+};
 
-// admin 
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired, // Validate that children is a valid React node
+};
 
-const ProtectedRouteForAdmin = ({children})=> {
-  const admin = JSON.parse(localStorage.getItem('user'))
-  
-  if(admin.user.email === 'knupadhyay784@gmail.com'){
-    return children
+// ProtectedRouteForAdmin Component
+const ProtectedRouteForAdmin = ({ children }) => {
+  const admin = JSON.parse(localStorage.getItem('user'));
+
+  if (admin && admin.user.email === '123@gmail.com') {
+    return children;
+  } else {
+    return <Navigate to='/login' />;
   }
-  else{
-    return <Navigate to={'/login'}/>
-  }
+};
 
-}
+ProtectedRouteForAdmin.propTypes = {
+  children: PropTypes.node.isRequired, // Validate that children is a valid React node
+};

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import myContext from '../../../context/data/myContext';
 
 function UpdateProduct() {
@@ -48,13 +48,12 @@ function UpdateProduct() {
                         />
                     </div>
                     <div>
-                        <textarea cols="30" rows="10" name='title'
-                         value={products.description}
-                         onChange={(e) => setProducts({ ...products, description: e.target.value })}
+                    <input type="text" name='title'
+                         value={products.inStock}
+                         onChange={(e) => setProducts({ ...products, inStock: e.target.value })}
                             className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
-                            placeholder='Product desc'>
-
-                        </textarea>
+                            placeholder='Enter 1 if in stock else 0.'>
+                        </input>
                     </div>
                     <div className=' flex justify-center mb-3'>
                         <button

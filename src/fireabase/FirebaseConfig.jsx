@@ -3,19 +3,20 @@ import { initializeApp } from "firebase/app";
 import {getFirestore} from 'firebase/firestore';
 import {getAuth} from 'firebase/auth';
 
-
-// Your web app's Firebase configuration
+// TODO: Add SDKs for Firebase products that you want to use
 const firebaseConfig = {
-  apiKey: "AIzaSyDoJvalILWn6esetahpL9BGRT__B5azWvI",
-  authDomain: "myfirstapp-38751.firebaseapp.com",
-  projectId: "myfirstapp-38751",
-  storageBucket: "myfirstapp-38751.appspot.com",
-  messagingSenderId: "273202707457",
-  appId: "1:273202707457:web:5724f212508b5b82f31400"
+  apiKey: "AIzaSyDeKpxog91qk7T5hcn28No3DWW4SYVDM2k",
+  authDomain: "jiit-cafeteria.firebaseapp.com",
+  projectId: "jiit-cafeteria",
+  storageBucket: "jiit-cafeteria.appspot.com",
+  messagingSenderId: "694869017624",
+  appId: "1:694869017624:web:a8a4d765c2721b6d8caf6d",
+  measurementId: "G-FN18TBMGRS"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 
 const fireDB = getFirestore(app);
 const auth = getAuth(app);

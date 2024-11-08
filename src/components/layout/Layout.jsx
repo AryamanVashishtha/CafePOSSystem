@@ -1,17 +1,22 @@
-import React from 'react'
-import Navbar from '../navbar/Navbar'
-import Footer from '../footer/Footer'
+import PropTypes from 'prop-types'; // Import PropTypes for prop validation
+import Navbar from '../navbar/Navbar';
+import Footer from '../footer/Footer';
 
-function Layout({children}) {
+function Layout({ children }) {
   return (
     <div>
-        <Navbar/>
+        <Navbar />
         <div className="content">
             {children}
         </div>
-        <Footer/>
+        <Footer />
     </div>
-  )
+  );
 }
 
-export default Layout
+// Add prop validation for `children`
+Layout.propTypes = {
+    children: PropTypes.node.isRequired,
+};
+
+export default Layout;
