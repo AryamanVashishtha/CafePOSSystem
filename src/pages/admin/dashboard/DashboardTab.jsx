@@ -279,6 +279,7 @@ function DashboardTab() {
                                 </table>
                             </div>
                         </TabPanel>
+                        <TabPanel></TabPanel>
                     </Tabs>
                 </div>
             </div>
