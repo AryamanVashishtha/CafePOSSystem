@@ -87,7 +87,7 @@ const OrderInfo = () => {
                         {Number(order.isServed) === 1 ? 'This order has been Served' : 'This order has Not been Served'}
                     </h1>
                 </div>
-                <div className="relative overflow-x-auto mb-16 mx-10">
+                <div className=" md:mx-20 relative overflow-x-auto mb-16 mx-0">
                     <h1 className='text-center mb-5 text-3xl font-semibold underline'>
                         Order Details
                     </h1>

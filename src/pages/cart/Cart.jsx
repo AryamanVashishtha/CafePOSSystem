@@ -17,7 +17,7 @@ function Cart() {
   const dispatch = useDispatch()
 
   const cartItems = useSelector((state) => state.cart);
-  console.log(cartItems)
+  // console.log(cartItems)
 
   const deleteCart = (item) => {
     dispatch(deleteFromCart(item));
@@ -36,7 +36,7 @@ function Cart() {
       temp = temp + parseInt(cartItem.price)
     })
     setTotalAmount(temp);
-    console.log(temp)
+    (temp)
   }, [cartItems])
 
   const shipping = parseInt(0);
@@ -131,7 +131,7 @@ function Cart() {
 
     var pay = new window.Razorpay(options);
     pay.open();
-    console.log(pay)
+    // console.log(pay)
 
 
   }
