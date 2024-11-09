@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
+import {useEffect, useState } from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes for prop validation
 import MyContext from './myContext';
 import { Timestamp, addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { fireDB } from '../../fireabase/FirebaseConfig';
 
-function MyState(props) { 
+function MyState(props) {
     const [mode, setMode] = useState('dark'); 
 
     useEffect(() => {
@@ -22,7 +23,7 @@ function MyState(props) {
 
     const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState({
-        title: null, price: null, imageUrl: null, category: null, inStock: null,
+        title: '', price: '', imageUrl: '', category: '', inStock: '',
         time: Timestamp.now(),
         date: new Date().toLocaleString("en-US", { month: "short", day: "2-digit", year: "numeric" })
     });
@@ -36,7 +37,7 @@ function MyState(props) {
             await addDoc(collection(fireDB, 'products'), products);
             toast.success("Product added successfully");
             setTimeout(() => window.location.href = '/dashboard', 800);
-            getProductData();
+            getProductData(); // Refresh the product list
         } catch (error) {
             console.error(error);
         } finally {
@@ -48,7 +49,6 @@ function MyState(props) {
 
     const getProductData = () => {
         setLoading(true);
-        // Define async function inside the useEffect and call it
         const fetchProductData = async () => {
             try {
                 const q = query(collection(fireDB, 'products'), orderBy('time'));
@@ -57,7 +57,7 @@ function MyState(props) {
                     QuerySnapshot.forEach((doc) => productArray.push({ ...doc.data(), id: doc.id }));
                     setProduct(productArray);
                 });
-                return () => data; // Cleanup
+                return () => data(); // Cleanup on unmount
             } catch (error) {
                 console.error(error);
             } finally {
@@ -79,7 +79,7 @@ function MyState(props) {
             await setDoc(doc(fireDB, 'products', products.id), products);
             toast.success("Product updated successfully");
             setTimeout(() => window.location.href = '/dashboard', 800);
-            getProductData();
+            getProductData(); // Refresh the product list
         } catch (error) {
             console.error(error);
         } finally {
@@ -92,7 +92,7 @@ function MyState(props) {
         try {
             await deleteDoc(doc(fireDB, 'products', item.id));
             toast.success("Product deleted successfully");
-            getProductData();
+            getProductData(); // Refresh the product list
         } catch (error) {
             console.error(error);
         } finally {
@@ -144,7 +144,7 @@ function MyState(props) {
             edithandle, updateProduct, deleteProduct, order,
             user
         }}>
-            {props.children}
+            {props.children || null} {/* Ensure children is not undefined */}
         </MyContext.Provider>
     );
 }

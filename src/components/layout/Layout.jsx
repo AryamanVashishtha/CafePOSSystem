@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes for prop validation
 import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import Layout from '../../../components/layout/Layout';
 import {Scanner} from '@yudiel/react-qr-scanner';

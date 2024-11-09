@@ -1,3 +1,4 @@
+import React from 'react';
 import { useContext, useEffect, useState } from 'react'
 import myContext from '../../context/data/myContext';
 import Layout from '../../components/layout/Layout';

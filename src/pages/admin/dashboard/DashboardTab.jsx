@@ -1,3 +1,4 @@
+import React from 'react';
 import { useContext } from 'react'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import myContext from '../../../context/data/myContext';
