@@ -26,7 +26,7 @@ import Allproducts from './pages/allproducts/Allproducts';
 function App() {
   return (
     <MyState>
-      <Router basename="CafePOSSystem">
+      <Router>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/allproducts" element={<Allproducts />} />
