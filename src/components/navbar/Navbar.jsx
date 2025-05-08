@@ -119,7 +119,6 @@ function Navbar() {
                     All Products
                   </Link>
                   {user ? <Link to={'/order'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
-                    Order
                   </Link> : <></>}
 
                   {user?.user?.email === '123@gmail.com' ?
